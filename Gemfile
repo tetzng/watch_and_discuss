@@ -8,7 +8,7 @@ ruby '2.6.5'
 gem 'bootsnap', '>= 1.1.0', require: false
 gem 'jbuilder', '~> 2.5'
 gem 'mysql2', '>= 0.4.4', '< 0.6.0'
-gem 'puma', '~> 3.11'
+gem 'puma', '~> 3.12'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
 gem 'sass-rails', '~> 5.0'
 gem 'turbolinks', '~> 5'
