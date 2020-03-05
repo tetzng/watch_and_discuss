@@ -1,13 +1,44 @@
 <div>
-<table>
-<caption>開始前の部屋一覧</caption>
-<thead>
-<tr><th>タイトル</th><th>開始時刻</th><th>終了時刻</th></tr>
-</thead>
-<tbody>
-  <% @unstarted_rooms.each do |room| %>
-<tr><td><%= room.title %></td><td><%= room.start_time %></td><td><%= room.end_time %></td></tr>
-  <% end %>
+  <table>
+    <caption>開始前の部屋一覧</caption>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>開始時刻</th>
+        <th>終了時刻</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @unstarted_rooms.each do |room| %>
+        <tr>
+          <td><%= room.title %></td>
+          <td><%= l room.start_time %></td>
+          <td><%= l room.end_time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
-</tbody>
-</table>
+<div>
+  <table>
+    <caption>終了した部屋一覧</caption>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>開始時刻</th>
+        <th>終了時刻</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @ended_rooms.each do |room| %>
+        <tr>
+          <td><%= room.title %></td>
+          <td><%= l room.start_time %></td>
+          <td><%= l room.end_time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
