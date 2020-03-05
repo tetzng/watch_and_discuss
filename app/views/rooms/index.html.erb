@@ -6,6 +6,7 @@
         <th>タイトル</th>
         <th>開始時刻</th>
         <th>終了時刻</th>
+        <th>人数</th>
       </tr>
     </thead>
     <tbody>
@@ -14,6 +15,7 @@
           <td><%= room.title %></td>
           <td><%= l room.start_time %></td>
           <td><%= l room.end_time %></td>
+          <td><%= room.all_members_size %>/5</td>
         </tr>
       <% end %>
     </tbody>
@@ -28,6 +30,7 @@
         <th>タイトル</th>
         <th>開始時刻</th>
         <th>終了時刻</th>
+        <th>人数</th>
       </tr>
     </thead>
     <tbody>
@@ -36,6 +39,7 @@
           <td><%= room.title %></td>
           <td><%= l room.start_time %></td>
           <td><%= l room.end_time %></td>
+          <td><%= room.all_members_size %>/5</td>
         </tr>
       <% end %>
     </tbody>
