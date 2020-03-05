@@ -2,6 +2,7 @@
 
 class RoomsController < ApplicationController
   def index
-    @unstarted_rooms = Room.where('start_time > ?', Time.zone.now)
+    @unstarted_rooms = Room.unstarted
+    @ended_rooms = Room.ended
   end
 end
