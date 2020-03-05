@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_04_084627) do
+ActiveRecord::Schema.define(version: 2020_03_05_070442) do
+
+  create_table "room_members", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "room_id"
+    t.bigint "member_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["member_id"], name: "index_room_members_on_member_id"
+    t.index ["room_id"], name: "index_room_members_on_room_id"
+  end
 
   create_table "rooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -18,6 +27,8 @@ ActiveRecord::Schema.define(version: 2020_03_04_084627) do
     t.datetime "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "owner_id"
+    t.index ["owner_id"], name: "index_rooms_on_owner_id"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -33,4 +44,7 @@ ActiveRecord::Schema.define(version: 2020_03_04_084627) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "room_members", "rooms"
+  add_foreign_key "room_members", "users", column: "member_id"
+  add_foreign_key "rooms", "users", column: "owner_id"
 end
