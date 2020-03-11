@@ -40,8 +40,8 @@ class Room < ApplicationRecord
   def periods_must_not_overlap
     return unless start_time && end_time
 
-    if owner.own_rooms&.
-        where('end_time > ? and ? > start_time and id != ?', start_time, end_time, id).present?
+    if owner.own_rooms
+        &.where('end_time > ? and ? > start_time and id != ?', start_time, end_time, id).present?
       errors[:base] << '既に作成している部屋と期間が重複しています'
     end
   end
