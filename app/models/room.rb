@@ -17,6 +17,8 @@ class Room < ApplicationRecord
   validate :periods_must_not_overlap
   validate :cannot_be_changed_after_start_time, on: :update
 
+  before_destroy :cannot_be_deleted_after_start_time
+
   def all_members_size
     members.size + 1
   end
@@ -46,5 +48,12 @@ class Room < ApplicationRecord
 
   def cannot_be_changed_after_start_time
     errors[:base] << '開始時刻を過ぎたため変更できません' if start_time_in_database < Time.zone.now
+  end
+
+  def cannot_be_deleted_after_start_time
+    return if start_time > Time.zone.now
+
+    errors[:base] << '開始時刻を過ぎたため削除できません'
+    throw :abort
   end
 end
