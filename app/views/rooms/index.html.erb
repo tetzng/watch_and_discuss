@@ -1,3 +1,5 @@
+<%= render 'layouts/flash_messages' %>
+
 <div>
   <%= link_to "部屋の作成", new_room_path %>
 </div>
@@ -14,14 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @unstarted_rooms.each do |room| %>
-        <tr>
-          <td><%= room.title %></td>
-          <td><%= l room.start_time %></td>
-          <td><%= l room.end_time %></td>
-          <td><%= room.all_members_size %>/5</td>
-        </tr>
-      <% end %>
+      <%= render partial: "room", collection: @unstarted_rooms %>
     </tbody>
   </table>
 </div>
@@ -38,14 +33,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @ended_rooms.each do |room| %>
-        <tr>
-          <td><%= room.title %></td>
-          <td><%= l room.start_time %></td>
-          <td><%= l room.end_time %></td>
-          <td><%= room.all_members_size %>/5</td>
-        </tr>
-      <% end %>
+      <%= render partial: "room", collection: @ended_rooms %>
     </tbody>
   </table>
 </div>

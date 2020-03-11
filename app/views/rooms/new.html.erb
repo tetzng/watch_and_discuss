@@ -1,22 +1,3 @@
-<div>
-  <%= form_with model: @room do |f| %>
-    <div>
-      <%= f.label :title, "タイトル" %>
-      <%= f.text_field :title %>
-    </div>
+<%= render 'layouts/flash_messages' %>
 
-    <div>
-      <%= f.label :start_time, "開始時刻" %>
-      <%= f.datetime_field :start_time %>
-    </div>
-
-    <div>
-      <%= f.label :end_time, "終了時刻" %>
-      <%= f.datetime_field :end_time %>
-    </div>
-
-    <div>
-      <%= f.submit "作成" %>
-    </div>
-  <% end %>
-</div>
+<%= render partial: "form" %>
