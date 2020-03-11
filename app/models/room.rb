@@ -15,6 +15,9 @@ class Room < ApplicationRecord
   validate :start_time_is_after_current_time
   validate :end_time_is_after_start_time
   validate :periods_must_not_overlap
+  validate :cannot_be_changed_after_start_time, on: :update
+
+  before_destroy :cannot_be_deleted_after_start_time
 
   def all_members_size
     members.size + 1
@@ -37,6 +40,20 @@ class Room < ApplicationRecord
   def periods_must_not_overlap
     return unless start_time && end_time
 
-    errors[:base] << '既に作成している部屋と期間が重複しています' if owner.own_rooms&.where('end_time > ? and ? > start_time', start_time, end_time).present?
+    if owner.own_rooms&.
+        where('end_time > ? and ? > start_time and id != ?', start_time, end_time, id).present?
+      errors[:base] << '既に作成している部屋と期間が重複しています'
+    end
+  end
+
+  def cannot_be_changed_after_start_time
+    errors[:base] << '開始時刻を過ぎたため変更できません' if start_time_in_database < Time.zone.now
+  end
+
+  def cannot_be_deleted_after_start_time
+    return if start_time > Time.zone.now
+
+    errors[:base] << '開始時刻を過ぎたため削除できません'
+    throw :abort
   end
 end

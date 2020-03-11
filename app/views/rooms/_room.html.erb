@@ -1,0 +1,6 @@
+<tr>
+  <td><%= link_to room.title, room_path(room) %></td>
+  <td><%= link_to "#{l room.start_time}", room_path(room) %></td>
+  <td><%= link_to "#{l room.end_time}", room_path(room) %></td>
+  <td><%= link_to "#{room.all_members_size}/5", room_path(room) %></td>
+</tr>

@@ -1,0 +1,15 @@
+<%= render 'layouts/flash_messages' %>
+
+<div>タイトル: <%= @room.title %></div>
+<div>開始時刻: <%= l @room.start_time %></div>
+<div>終了時刻: <%= l @room.end_time %></div>
+<div>人数: <%= @room.all_members_size %>/5</div>
+
+<% if current_user == @room.owner %>
+  <div>
+    <%= link_to '編集', edit_room_path %>
+  </div>
+  <div>
+    <%= link_to '削除', room_path, method: :delete %>
+  </div>
+<% end %>
