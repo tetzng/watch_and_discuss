@@ -52,6 +52,22 @@ class RoomsController < ApplicationController
     end
   end
 
+  def join
+    @room = Room.find(params[:id])
+
+    if @room.owner == current_user || @room.members.include?(current_user)
+      redirect_to room_path, flash: { success: '入室しました' }
+    else
+      @new_member = @room.room_members.new(member_id: current_user.id)
+      if @new_member.save
+        redirect_to room_path, flash: { success: '部屋に参加しました' }
+      else
+        flash.now[:error] = '参加できませんでした'
+        render 'show'
+      end
+    end
+  end
+
   private
 
   def create_params
