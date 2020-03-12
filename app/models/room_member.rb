@@ -5,6 +5,7 @@ class RoomMember < ApplicationRecord
   belongs_to :member, class_name: 'User'
 
   validate :periods_must_not_overlap
+  validate :cannot_be_joined_after_end_time
 
   private
 
@@ -14,5 +15,11 @@ class RoomMember < ApplicationRecord
              .present?
       errors[:base] << '既に参加している部屋と期間が重複しています'
     end
+  end
+
+  def cannot_be_joined_after_end_time
+    return if room.start_time > Time.zone.now
+
+    errors[:base] << '終了した部屋には参加できません'
   end
 end
