@@ -13,3 +13,15 @@
     <%= link_to '削除', room_path, method: :delete %>
   </div>
 <% end %>
+
+<div>
+  <%= link_to '参加', join_room_path %>
+</div>
+
+<div>
+  <% if @new_member.present? %>
+    <% @new_member.errors.full_messages.each do |message| %>
+      <p><%= message %></p>
+    <% end %>
+  <% end %>
+</div>
