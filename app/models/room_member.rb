@@ -6,6 +6,7 @@ class RoomMember < ApplicationRecord
 
   validate :periods_must_not_overlap
   validate :cannot_be_joined_after_end_time
+  validate :cannot_be_joined_exceed_the_capacity
 
   private
 
@@ -21,5 +22,11 @@ class RoomMember < ApplicationRecord
     return if room.end_time > Time.zone.now
 
     errors[:base] << '終了した部屋には参加できません'
+  end
+
+  def cannot_be_joined_exceed_the_capacity
+    return if room.all_members_size < 5
+
+    errors[:base] << '人数制限に達した部屋には参加できません'
   end
 end
