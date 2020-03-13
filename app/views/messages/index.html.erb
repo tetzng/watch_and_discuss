@@ -1,0 +1,31 @@
+<%= render 'layouts/flash_messages' %>
+
+<div>
+  <div>タイトル: <%= @room.title %></div>
+  <div>開始時刻: <%= l @room.start_time %></div>
+  <div>終了時刻: <%= l @room.end_time %></div>
+  <div>人数: <%= @room.all_members_size %>/5</div>
+</div>
+
+<div>
+  <%= render @messages %>
+</div>
+
+<div>
+  <%= form_with model: [@room, @message], local: true do |f| %>
+    <div>
+      <%= f.label :body, "内容" %>
+      <%= f.text_area :body %>
+    </div>
+
+    <div>
+      <% @message.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    </div>
+
+    <div>
+      <%= f.submit %>
+    </div>
+  <% end %>
+</div>

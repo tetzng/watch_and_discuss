@@ -3,6 +3,7 @@
 class Room < ApplicationRecord
   has_many :room_members
   has_many :members, through: :room_members
+  has_many :messages
   belongs_to :owner, class_name: 'User'
 
   scope :unstarted, -> { where('start_time > ?', Time.zone.now) }
