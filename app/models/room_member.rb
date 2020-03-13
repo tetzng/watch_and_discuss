@@ -18,7 +18,7 @@ class RoomMember < ApplicationRecord
   end
 
   def cannot_be_joined_after_end_time
-    return if room.start_time > Time.zone.now
+    return if room.end_time > Time.zone.now
 
     errors[:base] << '終了した部屋には参加できません'
   end
