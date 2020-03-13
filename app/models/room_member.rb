@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
 class RoomMember < ApplicationRecord
+  CAPACITY = 5
   belongs_to :room
   belongs_to :member, class_name: 'User'
 
   validate :periods_must_not_overlap
   validate :cannot_be_joined_after_end_time
+  validate :cannot_be_joined_exceed_the_capacity
 
   private
 
@@ -21,5 +23,11 @@ class RoomMember < ApplicationRecord
     return if room.end_time > Time.zone.now
 
     errors[:base] << '終了した部屋には参加できません'
+  end
+
+  def cannot_be_joined_exceed_the_capacity
+    return if room.all_members_size < CAPACITY
+
+    errors[:base] << '人数制限に達した部屋には参加できません'
   end
 end
