@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class RoomMember < ApplicationRecord
+  CAPACITY = 5
   belongs_to :room
   belongs_to :member, class_name: 'User'
 
@@ -25,7 +26,7 @@ class RoomMember < ApplicationRecord
   end
 
   def cannot_be_joined_exceed_the_capacity
-    return if room.all_members_size < 5
+    return if room.all_members_size < CAPACITY
 
     errors[:base] << '人数制限に達した部屋には参加できません'
   end
