@@ -15,7 +15,11 @@
 <% end %>
 
 <div>
-  <%= link_to '参加', join_room_path %>
+  <% if @room.owner == current_user || @room.members.include?(current_user) %>
+    <%= link_to '入室', join_room_path %>
+  <% else %>
+    <%= link_to '参加', join_room_path %>
+  <% end %>
 </div>
 
 <div>
