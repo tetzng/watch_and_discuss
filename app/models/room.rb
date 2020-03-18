@@ -7,6 +7,7 @@ class Room < ApplicationRecord
   belongs_to :owner, class_name: 'User'
 
   scope :unstarted, -> { where('start_time > ?', Time.zone.now) }
+  scope :starting, -> { where('start_time <= ? and end_time >= ?', Time.zone.now, Time.zone.now) }
   scope :ended, -> { where('end_time < ?', Time.zone.now) }
 
   validates :title, presence: true

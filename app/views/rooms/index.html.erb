@@ -6,6 +6,23 @@
 
 <div>
   <table>
+    <caption>開始中の部屋一覧</caption>
+    <thead>
+      <tr>
+        <th>タイトル</th>
+        <th>開始時刻</th>
+        <th>終了時刻</th>
+        <th>人数</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: "room", collection: @starting_rooms %>
+    </tbody>
+  </table>
+</div>
+
+<div>
+  <table>
     <caption>開始前の部屋一覧</caption>
     <thead>
       <tr>

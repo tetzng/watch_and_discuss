@@ -5,6 +5,7 @@ class RoomsController < ApplicationController
 
   def index
     @unstarted_rooms = Room.unstarted.includes(:members)
+    @starting_rooms = Room.starting.includes(:members)
     @ended_rooms = Room.ended.includes(:members)
   end
 
