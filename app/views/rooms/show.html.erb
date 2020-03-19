@@ -1,31 +1,29 @@
 <%= render 'layouts/flash_messages' %>
+<div class="container pt-3">
+  <h3><%= @room.title %></h3>
+  <div>開始時刻: <%= l @room.start_time %></div>
+  <div>終了時刻: <%= l @room.end_time %></div>
+  <div>人数: <%= @room.all_members_size %>/5</div>
 
-<div>タイトル: <%= @room.title %></div>
-<div>開始時刻: <%= l @room.start_time %></div>
-<div>終了時刻: <%= l @room.end_time %></div>
-<div>人数: <%= @room.all_members_size %>/5</div>
-
-<% if current_user == @room.owner %>
-  <div>
-    <%= link_to '編集', edit_room_path %>
-  </div>
-  <div>
-    <%= link_to '削除', room_path, method: :delete %>
-  </div>
-<% end %>
-
-<div>
-  <% if @room.owner == current_user || @room.members.include?(current_user) %>
-    <%= link_to '入室', join_room_path %>
-  <% else %>
-    <%= link_to '参加', join_room_path %>
-  <% end %>
-</div>
-
-<div>
-  <% if @new_member.present? %>
-    <% @new_member.errors.full_messages.each do |message| %>
-      <p><%= message %></p>
+  <div class="pt-2">
+    <% if @room.owner == current_user || @room.members.include?(current_user) %>
+      <%= link_to '入室', join_room_path, class: "btn btn-primary btn-sm" %>
+    <% else %>
+      <%= link_to '参加', join_room_path, class: "btn btn-primary btn-sm" %>
     <% end %>
-  <% end %>
+    <% if current_user == @room.owner %>
+      <%= link_to '編集', edit_room_path, class: "btn btn-secondary btn-sm" %>
+      <%= link_to '削除', room_path, method: :delete, class: "btn btn-secondary btn-sm" %>
+    <% end %>
+
+  </div>
+
+  <div class="error-messages">
+    <% if @new_member.present? %>
+      <% @new_member.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    <% end %>
+  </div>
+
 </div>

@@ -1,41 +1,49 @@
 <%= render 'layouts/flash_messages' %>
-
-<div>
-  <div>タイトル: <%= @room.title %></div>
-  <div>開始時刻: <%= l @room.start_time %></div>
-  <div>終了時刻: <%= l @room.end_time %></div>
-  <div>人数: <%= @room.all_members_size %>/5</div>
-</div>
-
-<div>
-  <%= render @messages %>
+<div class="container chat-container mt-3">
+  <div class="messaging">
+    <div class="inbox_msg">
+      <div class="inbox_people">
+        <div class="headind_srch">
+          <div class="recent_heading">
+            <h4><%= @room.title %></h4>
+            <h5>開始時刻: <%= l @room.start_time %></h5>
+            <h5>終了時刻: <%= l @room.end_time %></h5>
+            <h5>人数: <%= @room.all_members_size %>/5</h5>
+          </div>
+        </div>
+      </div>
+      <div class="mesgs">
+        <div class="msg_history">
+          <%= render @messages %>
+        </div>
+        <% if @room.end_time > Time.zone.now %>
+          <div class="type_msg">
+            <%= form_with model: [@room, @message], local: true do |f| %>
+              <div class="input_msg_write">
+                <%= f.text_field :body, class: "write_msg", placeholder: "Type a message" %>
+                <div>
+                  <%= f.submit "送信", class: "msg_send_btn"  %>
+                </div>
+              </div>
+            <% end %>
+            <div class="error-messages">
+              <% @message.errors.full_messages.each do |message| %>
+                <p><%= message %></p>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>
 
 <% if @room.end_time > Time.zone.now %>
-  <div>
-    <%= form_with model: [@room, @message], local: true do |f| %>
-      <div>
-        <%= f.label :body, "内容" %>
-        <%= f.text_area :body %>
-      </div>
-
-      <div>
-        <% @message.errors.full_messages.each do |message| %>
-          <p><%= message %></p>
-        <% end %>
-      </div>
-
-      <div>
-        <%= f.submit %>
-      </div>
-    <% end %>
-  </div>
-
   <script>
-    window.addEventListener('turbolinks:load',function(){
-    const interval = 60000;
+    window.addEventListener('turbolinks:load', function () {
+      const interval = 60000;
 
-    setInterval('location.reload()',interval);
+      setInterval('location.reload()', interval);
     });
   </script>
 <% end %>

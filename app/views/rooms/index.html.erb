@@ -1,57 +1,55 @@
 <%= render 'layouts/flash_messages' %>
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-sm">
+      <h2 class="h4">開始中の部屋一覧</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>開始時刻</th>
+            <th>終了時刻</th>
+            <th>人数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "room", collection: @starting_rooms %>
+        </tbody>
+      </table>
+    </div>
 
-<div>
-  <%= link_to "部屋の作成", new_room_path %>
+    <div class="col-sm">
+      <h2 class="h4">開始前の部屋一覧</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>開始時刻</th>
+            <th>終了時刻</th>
+            <th>人数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "room", collection: @unstarted_rooms %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-sm">
+      <h2 class="h4">終了した部屋一覧</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>タイトル</th>
+            <th>開始時刻</th>
+            <th>終了時刻</th>
+            <th>人数</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= render partial: "room", collection: @ended_rooms %>
+        </tbody>
+      </table>
+    </div>
+  </div>
 </div>
-
-<div>
-  <table>
-    <caption>開始中の部屋一覧</caption>
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>開始時刻</th>
-        <th>終了時刻</th>
-        <th>人数</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "room", collection: @starting_rooms %>
-    </tbody>
-  </table>
-</div>
-
-<div>
-  <table>
-    <caption>開始前の部屋一覧</caption>
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>開始時刻</th>
-        <th>終了時刻</th>
-        <th>人数</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "room", collection: @unstarted_rooms %>
-    </tbody>
-  </table>
-</div>
-
-<div>
-  <table>
-    <caption>終了した部屋一覧</caption>
-    <thead>
-      <tr>
-        <th>タイトル</th>
-        <th>開始時刻</th>
-        <th>終了時刻</th>
-        <th>人数</th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= render partial: "room", collection: @ended_rooms %>
-    </tbody>
-  </table>
-</div>
-
