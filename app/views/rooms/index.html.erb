@@ -1,5 +1,20 @@
 <%= render 'layouts/flash_messages' %>
 <div class="container pt-3">
+<div class="jumbotron">
+  <h1 class="display-4">MiteGiron</h1>
+  <p class="lead">
+    動画サービスの動画を同時再生しながら<br>
+    少人数で実況議論できるサービス
+  </p>
+  <hr class="my-4">
+  <p>
+  <%= link_to "新規登録", new_user_registration_path, class: "font-weight-bold" %> または
+  <%= link_to "ログイン", new_user_session_path, class: "font-weight-bold" %>をして、
+    <%= link_to "開始前の部屋一覧", { anchor: "unstarted" }, class: "font-weight-bold" %>から気になる部屋に参加するか、<br>誰かと一緒に見たい動画のタイトルで部屋を作成しよう！</p>
+  <%= link_to "部屋を作成", new_room_path, class: "btn btn-primary btn-lg" %>
+</div>
+</div>
+<div class="container pt-3">
   <div class="row">
     <div class="col-sm">
       <h2 class="h4">開始中の部屋一覧</h2>
@@ -19,7 +34,7 @@
     </div>
 
     <div class="col-sm">
-      <h2 class="h4">開始前の部屋一覧</h2>
+      <h2 class="h4" id="unstarted">開始前の部屋一覧</h2>
       <table>
         <thead>
           <tr>
