@@ -1,5 +1,9 @@
-<div>
-  <div><%= message.user.name %></div>
-  <div><%= l message.created_at %></div>
-  <p><%= message.body %></p>
+<div class="incoming_msg">
+  <div class="received_msg">
+    <div class="received_withd_msg">
+      <span class="user_name"><%= message.user.name %></span>
+      <p><%= message.body %></p>
+      <span class="time_date"><%= l message.created_at %></span>
+    </div>
+  </div>
 </div>

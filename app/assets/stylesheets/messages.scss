@@ -1,0 +1,86 @@
+.inbox_people {
+  background: #f8f8f8 none repeat scroll 0 0;
+  overflow: hidden;
+}
+.inbox_msg {
+  border: 1px solid #c4c4c4;
+  overflow: hidden;
+}
+.headind_srch {
+  padding: 10px 29px 10px 20px;
+  overflow: hidden;
+  border-bottom: 1px solid #c4c4c4;
+}
+
+.recent_heading h4 {
+  color: #05728f;
+  font-size: 20px;
+  margin: auto;
+}
+.recent_heading h5 {
+  color: #05728f;
+  font-size: 16px;
+  margin: auto;
+}
+
+.received_withd_msg p {
+  background: #ebebeb none repeat scroll 0 0;
+  border-radius: 4px;
+  color: #646464;
+  font-size: 16px;
+  margin: 0;
+  padding: 4px 12px 4px 12px;
+  width: 100%;
+}
+
+.user_name {
+  color: #747474;
+  display: block;
+  font-size: 16px;
+  margin: 0 0 4px;
+}
+.time_date {
+  color: #747474;
+  display: block;
+  font-size: 12px;
+  margin: 8px 0 0;
+}
+.incoming_msg {
+  margin: 16px 0;
+}
+.mesgs {
+  padding: 24px 24px 0;
+}
+.input_msg_write input[type="text"] {
+  background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+  border: medium none;
+  color: #4c4c4c;
+  font-size: 16px;
+  min-height: 48px;
+  width: 100%;
+}
+
+.type_msg {
+  border-top: 1px solid #c4c4c4;
+  position: relative;
+}
+.msg_send_btn {
+  background: #05728f none repeat scroll 0 0;
+  border: medium none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 17px;
+  height: 33px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  border-radius: 8px;
+  font-size: 16px;
+}
+.messaging {
+  padding: 0 0 50px 0;
+}
+.msg_history {
+  height: calc(100vh - 312px);
+  overflow-y: auto;
+}
