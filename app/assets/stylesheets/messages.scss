@@ -84,3 +84,14 @@
   height: calc(100vh - 312px);
   overflow-y: auto;
 }
+.relord_btn {
+  display: inline-block;
+  background: #05728f none repeat scroll 0 0;
+  color: #fff;
+  cursor: pointer;
+  position: relative;
+  left: calc(100% - 32px);
+  bottom: 80px;
+  border-radius: 8px;
+}
+
