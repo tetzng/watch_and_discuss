@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
+  has_one :like
   belongs_to :room
   belongs_to :user
 

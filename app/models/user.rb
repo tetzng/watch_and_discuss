@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :room_members, foreign_key: :member_id
   has_many :rooms, through: :room_members
   has_many :messages
+  has_many :likes
 
   def joined_rooms
     joined_room_ids = own_room_ids + room_ids
