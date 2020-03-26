@@ -7,11 +7,11 @@
         <%= l message.created_at %>
         <% if current_user == @room.owner %>
            |
-          <% if message.like.nil? %>
-            <%= link_to "いいね！", room_message_likes_path(@room, message), method: :post %>
-          <% else %>
+          <% if message.liked? %>
             <%= link_to "いいね！済み", room_message_like_path(@room, message, message.like),
               method: :delete, data: { confirm: "いいねを取り消しますか？" } %>
+          <% else %>
+            <%= link_to "いいね！", room_message_likes_path(@room, message), method: :post %>
           <% end %>
         <% end %>
       </span>

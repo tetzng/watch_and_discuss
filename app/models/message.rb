@@ -9,6 +9,10 @@ class Message < ApplicationRecord
 
   validate :cannot_be_created_in_ended_room
 
+  def liked?
+    like.present?
+  end
+
   private
 
   def cannot_be_created_in_ended_room
