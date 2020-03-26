@@ -4,12 +4,15 @@
       <span class="user_name"><%= message.user.name %></span>
       <p><%= message.body %></p>
       <span class="time_date">
-        <%= l message.created_at %> |
-        <% if message.like.nil? %>
-          <%= link_to "いいね！", room_message_likes_path(@room, message), method: :post %>
-        <% else %>
-          <%= link_to "いいね！済み", room_message_like_path(@room, message, message.like),
-            method: :delete, data: { confirm: "いいねを取り消しますか？" } %>
+        <%= l message.created_at %>
+        <% if current_user == @room.owner %>
+           |
+          <% if message.liked? %>
+            <%= link_to "いいね！済み", room_message_like_path(@room, message, message.like),
+              method: :delete, data: { confirm: "いいねを取り消しますか？" } %>
+          <% else %>
+            <%= link_to "いいね！", room_message_likes_path(@room, message), method: :post %>
+          <% end %>
         <% end %>
       </span>
     </div>
