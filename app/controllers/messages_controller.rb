@@ -7,7 +7,7 @@ class MessagesController < ApplicationController
   def index
     if valid_user?
       @message = Message.new
-      @messages = @room.messages.includes(:user, :like)
+      @messages = @room.messages.includes(:user, :like).order("id desc")
     else
       redirect_to @room, flash: { notice: '部屋に参加できませんでした' }
     end
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
       if @message.save
         redirect_to room_messages_path, flash: { success: 'メッセージを作成しました' }
       else
-        @messages = @room.messages.includes(:user, :like)
+        @messages = @room.messages.includes(:user, :like).order("id desc")
         flash.now[:error] = '作成に失敗しました'
         render 'index'
       end
