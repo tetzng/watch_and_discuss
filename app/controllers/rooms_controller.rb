@@ -71,9 +71,9 @@ class RoomsController < ApplicationController
 
   def play
     @room = Room.find(params[:id])
-    if @room.owner == current_user
-      redirect_to room_messages_path(@room),
-                  flash: { error: '部屋の作成者以外は再生開始できません' }
+    unless @room.owner == current_user
+      return redirect_to room_messages_path(@room),
+                         flash: { error: '部屋の作成者以外は再生開始できません' }
     end
 
     if @room.update(play_start_time: Time.zone.now)
