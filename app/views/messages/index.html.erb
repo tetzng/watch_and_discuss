@@ -42,7 +42,7 @@
   </div>
 </div>
 
-<% if @room.end_time == Time.zone.now %>
+<% if @room.end_time > Time.zone.now %>
   <script>
     window.addEventListener('turbolinks:load', function () {
       const interval = 60000;

@@ -12,6 +12,10 @@ $(document).on('turbolinks:load', function(){
         const timeHtml = elaspedTime ? '再生時間: ' + elaspedTime : '終了しました'
 
         $('#play_start_time').html(timeHtml);
+      })
+
+      .fail(function(){
+        alert('再生時間の表示でエラーが発生しました');
       });
     }
   }
