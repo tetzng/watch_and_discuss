@@ -1,0 +1,20 @@
+<% if @room.end_time < Time.zone.now %>
+  <p class="play_start_time">
+    終了しました
+  </p>
+<% else %>
+  <% if @room.play_started? %>
+    <p class="play_start_time" id="play_start_time">
+      再生時間: <%= Time.at(@elasped_time).utc.strftime('%X') %>
+    </p>
+  <% else %>
+    <% if @room.owner == current_user %>
+      <%= link_to "再生開始", play_room_path(@room), method: :patch, class: "btn btn-sm btn-outline-success mt-2 play_start_btn" %>
+      <% @room.errors.full_messages.each do |message| %>
+        <p><%= message %></p>
+      <% end %>
+    <% else %>
+      <p class="play_start_time" id="play_start_time">再生時間: 00:00:00</p>
+    <% end %>
+  <% end %>
+<% end %>

@@ -49,7 +49,7 @@
   margin: 16px 0;
 }
 .mesgs {
-  padding: 24px 24px 0;
+  padding: 0px 24px;
 }
 .input_msg_write input[type="text"] {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
@@ -78,10 +78,10 @@
   font-size: 16px;
 }
 .messaging {
-  padding: 0 0 50px 0;
+  padding: 0 0 24px 0;
 }
 .msg_history {
-  height: calc(100vh - 312px);
+  height: calc(100vh - 336px);
   overflow-y: auto;
 }
 .relord_btn {
@@ -94,4 +94,14 @@
   bottom: 80px;
   border-radius: 8px;
 }
-
+.play_start_time_wrap {
+  display: inline-block;
+  position: relative;
+  top: 0;
+  right: 52px;
+}
+.play_start_time {
+  color: #1e7e34;
+  font-size: 16px;
+  margin: auto;
+}
