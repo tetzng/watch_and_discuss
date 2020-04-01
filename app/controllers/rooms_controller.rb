@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class RoomsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create edit update destroy join]
+  before_action :authenticate_user!, except: %i[index show]
 
   def index
     @unstarted_rooms = Room.unstarted.includes(:members)
@@ -63,9 +63,25 @@ class RoomsController < ApplicationController
       if @new_member.save
         redirect_to room_messages_path(@room), flash: { success: '部屋に参加しました' }
       else
-        flash.now[:error] = '参加できませんでした'
+        flash.now[:error] = "参加できませんでした#{@room.errors.full_messages}"
         render 'show'
       end
+    end
+  end
+
+  def play
+    @room = Room.find(params[:id])
+    if @room.owner == current_user
+      redirect_to room_messages_path(@room),
+                  flash: { error: '部屋の作成者以外は再生開始できません' }
+    end
+
+    if @room.update(play_start_time: Time.zone.now)
+      redirect_to room_messages_path(@room), flash: { success: '再生開始しました' }
+    else
+      redirect_to room_messages_path(@room),
+                  flash: { error: "再生開始できませんでした<br>
+                         #{@room.errors.full_messages.join('<br>')}" }
     end
   end
 

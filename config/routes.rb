@@ -3,7 +3,10 @@
 Rails.application.routes.draw do
   root 'rooms#index'
   resources :rooms do
-    get 'join', on: :member
+    member do
+      get 'join'
+      patch 'play'
+    end
     resources :messages, only: %i[index create] do
       resources :likes, only: %i[create destroy]
     end

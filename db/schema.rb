@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_19_092625) do
+ActiveRecord::Schema.define(version: 2020_03_26_071150) do
 
   create_table "likes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "message_id"
@@ -47,6 +47,7 @@ ActiveRecord::Schema.define(version: 2020_03_19_092625) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "owner_id"
+    t.datetime "play_start_time"
     t.index ["owner_id"], name: "index_rooms_on_owner_id"
   end
 
