@@ -37,6 +37,10 @@ class Room < ApplicationRecord
     start_time <= current_time && end_time >= current_time
   end
 
+  def ended?
+    end_time < Time.zone.now
+  end
+
   private
 
   def start_time_is_after_current_time

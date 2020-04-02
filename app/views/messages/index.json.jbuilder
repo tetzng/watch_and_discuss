@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-if @room.starting?
+unless @room.ended?
   elasped_time = if @room.play_started?
                    Time.zone.now - @room.play_start_time
                  else
